@@ -2,6 +2,8 @@ package Main;
 
 import javax.swing.JFrame;
 
+import GUI.Hauptfenster;
+
 public class KeyDrumPadMain extends JFrame
 {
 	private static final long serialVersionUID = 1L;
@@ -10,7 +12,7 @@ public class KeyDrumPadMain extends JFrame
 	public static void main(String[] args) 
 	{
 		System.out.println("start");
-		new GUIs();	//Jetzt gehts looos
+		new Hauptfenster();	//Jetzt gehts looos
 	}
 	//	MAIN Ende
 	
