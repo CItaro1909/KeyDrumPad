@@ -9,7 +9,8 @@ public class KeyDrumPadMain extends JFrame
 	//	MAIN
 	public static void main(String[] args) 
 	{
-		new GUIs();
+		System.out.println("start");
+		new GUIs();	//Jetzt gehts looos
 	}
 	//	MAIN Ende
 	
