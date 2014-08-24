@@ -40,6 +40,7 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 		super();
 		this.setBounds(xpos, ypos, 60, 60);
 		this.padName="";
+		this.setText(""+tastenkuerzel);
 		this.hintergrundFarbe=Color.LIGHT_GRAY;
 		this.lautstaerke=50;
 		this.tastenkuerzel=tastenkuerzel;
