@@ -17,6 +17,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 
 public class Sound {
+	
 	private URL pfad;
 	private Clip clip;
 	private AudioFormat af;
@@ -24,6 +25,14 @@ public class Sound {
 	private byte[] audio;
 	AudioInputStream ais;
 	
+	
+	/**
+	 * Der Dateiname wird an Sound übergeben und abgespielt
+	 * @param dateiname
+	 * @throws UnsupportedAudioFileException
+	 * @throws IOException
+	 * @throws LineUnavailableException
+	 */
 	public Sound(String dateiname) throws UnsupportedAudioFileException, IOException, LineUnavailableException
 	{
 		ais= AudioSystem.getAudioInputStream(new File(dateiname));
@@ -44,6 +53,10 @@ public class Sound {
 		clip.start();
 	}*/
 	
+	/**
+	 * Der Sound bzw. Clip wird gestoppt
+	 * @throws IOException
+	 */
 	public void stopp() throws IOException
 	{
 		clip.stop();

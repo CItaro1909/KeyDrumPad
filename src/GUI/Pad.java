@@ -27,7 +27,7 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 	private boolean soundSpieltAb = false;
 	
 	/**
-	 * Ein Pad ist ein Button der einen Ton abspielt beim Druck von Tastenkürzel oder Mausklick
+	 * Ein Pad ist ein Button der einen Ton abspielt, beim Druck von Tastenkürzel oder Mausklick
 	 * @param xpos beschreibt die X-Position von einem Pad
 	 * @param ypos beschreibt die Y-Position von einem Pad
 	 * @param tastenkuerzel = Buchstabe auf der Tastatur
@@ -53,7 +53,7 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 	}
 	
 	/**
-	 * Sound soll abgespielt werden beim Tastendrücken oder Mausklicken
+	 * Sound soll abgespielt werden 
 	 * @throws LineUnavailableException 
 	 * @throws IOException 
 	 * @throws UnsupportedAudioFileException 
@@ -66,6 +66,11 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 			soundSpieltAb = true;
 		}
 	}
+	
+	/**
+	 * Der Sound soll gestoppt werden, wenn das Pad nicht gedrückt wird
+	 * @throws IOException
+	 */
 	public void soundStopp() throws IOException
 	{
 		if(this.padDruckDauerhaft==true)
@@ -83,6 +88,9 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 		
 	}
 	
+	/**
+	 * Sound wird abgespielt beim Tastendruck
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyChar()==this.tastenkuerzel)
@@ -97,6 +105,9 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 		}	
 	}
 	
+	/**
+	 * Sound soll aufhören zu spielen wenn Taste losgelassen wird
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyChar()==this.tastenkuerzel)
@@ -132,7 +143,10 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+	 * Sound wird abgespielt beim Mausklick auf das Pad
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(e.getSource() == this)
@@ -147,6 +161,9 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 		}	
 	}
 
+	/**
+	 * Sound soll aufhören zu spielen wenn Pad nicht mehr geklickt wird
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		try {

@@ -33,7 +33,7 @@ public class Hauptfenster extends JFrame
 		private Pad[] pads= new Pad[46];	//TODO in set klasse verschieben
 	
 	/**
-	 * konstuktor blabla
+	 * Konstruktor vom Hauptfenster
 	 * @throws LineUnavailableException 
 	 * @throws IOException 
 	 * @throws UnsupportedAudioFileException 
@@ -45,21 +45,19 @@ public class Hauptfenster extends JFrame
 	}
 	
 	/**
-	 * initialisert das fenster
+	 * Initialisert das Fenster
 	 * @param a zum testen von javadoc
 	 * @throws LineUnavailableException 
 	 * @throws IOException 
 	 * @throws UnsupportedAudioFileException 
 	 */
-	
-	
 	public void initialisieren() throws UnsupportedAudioFileException, IOException, LineUnavailableException
 	{
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
+		getContentPane().setLayout(null);								// Es wird kein Layout verwendet
 		this.setTitle("KeyDrumPad");
-		this.setMinimumSize(new Dimension(1300, 700));
-		this.setExtendedState(MAXIMIZED_BOTH);
+		this.setMinimumSize(new Dimension(1300, 700));					// Minimalste Fenstergröße
+		this.setExtendedState(MAXIMIZED_BOTH);							// Fenster wird an Bildschirmgröße in FullScreen angezeigt
 		
 		Pad testpad = new Pad(0, 200, 'd', "instrument1.wav");
 		this.add(testpad);
