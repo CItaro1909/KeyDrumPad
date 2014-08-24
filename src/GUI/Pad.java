@@ -7,17 +7,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
 public class Pad extends JButton implements ActionListener, KeyListener, MouseListener {
 
-	private String soundDatei;
+	private Sound soundDatei;
+	private String soundDatei_name;
+	
 	private Color hintergrundFarbe;
 	private double lautstaerke;
 	private String padName;
 	private char tastenkuerzel;
-	private boolean padDruckDauerhaft;
+	private boolean padDruckDauerhaft=true;
 	private boolean soundSpieltAb = false;
 	
 	/**
@@ -25,8 +31,11 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 	 * @param xpos beschreibt die X-Position von einem Pad
 	 * @param ypos beschreibt die Y-Position von einem Pad
 	 * @param tastenkuerzel = Buchstabe auf der Tastatur
+	 * @throws LineUnavailableException 
+	 * @throws IOException 
+	 * @throws UnsupportedAudioFileException 
 	 */
-	public Pad(int xpos, int ypos, char tastenkuerzel)
+	public Pad(int xpos, int ypos, char tastenkuerzel, String dateiname) throws UnsupportedAudioFileException, IOException, LineUnavailableException
 	{
 		super();
 		this.setBounds(xpos, ypos, 60, 60);
@@ -34,7 +43,8 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 		this.hintergrundFarbe=Color.LIGHT_GRAY;
 		this.lautstaerke=50;
 		this.tastenkuerzel=tastenkuerzel;
-		this.soundDatei="";
+		this.soundDatei_name="sounds/"+dateiname;
+		//this.soundDatei=new Sound("sounds/instrument1.wav");
 		
 		this.addActionListener(this);
 		this.addKeyListener(this);
@@ -43,19 +53,28 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 	
 	/**
 	 * Sound soll abgespielt werden beim Tastendrücken oder Mausklicken
+	 * @throws LineUnavailableException 
+	 * @throws IOException 
+	 * @throws UnsupportedAudioFileException 
 	 */
-	public void soundAbspielen()
+	public void soundAbspielen() throws UnsupportedAudioFileException, IOException, LineUnavailableException
 	{		
 		if(soundSpieltAb == false)
 		{
-			System.out.println("Ab gehts");
+			this.soundDatei=new Sound(this.soundDatei_name);
 			soundSpieltAb = true;
-		}		
+		}
 	}
-	public void soundStopp()
+	public void soundStopp() throws IOException
 	{
+		if(this.padDruckDauerhaft==true)
+		{
+			this.soundDatei.stopp();
+		}
+		else{
+			
+		}
 		soundSpieltAb = false;
-		System.out.println("gestoppt");
 		
 	}
 	@Override
@@ -67,7 +86,13 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyChar()==this.tastenkuerzel)
 		{
-			soundAbspielen();
+			try {
+				soundAbspielen();
+			} catch (UnsupportedAudioFileException | IOException
+					| LineUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}	
 	}
 	
@@ -75,7 +100,12 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyChar()==this.tastenkuerzel)
 		{
-			soundStopp();
+			try {
+				soundStopp();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -106,12 +136,23 @@ public class Pad extends JButton implements ActionListener, KeyListener, MouseLi
 	public void mousePressed(MouseEvent e) {
 		if(e.getSource() == this)
 		{
-			soundAbspielen();
+				try {
+					soundAbspielen();
+				} catch (UnsupportedAudioFileException | IOException
+						| LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}	
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		soundStopp();
+		try {
+			soundStopp();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }

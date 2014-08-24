@@ -1,5 +1,9 @@
 package GUI;
 
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -9,8 +13,11 @@ public class Hauptfenster extends JFrame
 	
 	/**
 	 * konstuktor blabla
+	 * @throws LineUnavailableException 
+	 * @throws IOException 
+	 * @throws UnsupportedAudioFileException 
 	 */
-	public Hauptfenster()
+	public Hauptfenster() throws UnsupportedAudioFileException, IOException, LineUnavailableException
 	{
 		super();
 		initialisieren(2);
@@ -19,10 +26,13 @@ public class Hauptfenster extends JFrame
 	/**
 	 * initialisert das fenster
 	 * @param a zum testen von javadoc
+	 * @throws LineUnavailableException 
+	 * @throws IOException 
+	 * @throws UnsupportedAudioFileException 
 	 */
 	
 	
-	public void initialisieren(int a)
+	public void initialisieren(int a) throws UnsupportedAudioFileException, IOException, LineUnavailableException
 	{
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -32,7 +42,7 @@ public class Hauptfenster extends JFrame
 		//Groesse wird automatisch angepasst
 		//pack();
 	
-		Pad testpad = new Pad(0, 0, 'd');
+		Pad testpad = new Pad(0, 0, 'd', "instrument1.wav");
 		this.add(testpad);
 		
 		this.setResizable(false);
